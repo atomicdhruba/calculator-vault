@@ -20,6 +20,7 @@ import com.stealth.calcbox.ui.CalculatorScreen
 import com.stealth.calcbox.vault.AntiForensicsManager
 import com.stealth.calcbox.vault.VaultAction
 import com.stealth.calcbox.vault.VaultSecurityManager
+import com.stealth.calcbox.webview.VaultWebView
 
 class MainActivity : ComponentActivity() {
 
@@ -73,11 +74,10 @@ class MainActivity : ComponentActivity() {
                 )
             ) {
                 if (isVaultUnlocked) {
-                    // Task 5 WebView engine placeholder
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(Color.Black)
+                    VaultWebView(
+                        url = currentVaultUrl,
+                        onLockVault = { lockVault() },
+                        modifier = Modifier.fillMaxSize()
                     )
                 } else {
                     CalculatorScreen(viewModel = calculatorViewModel)
