@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080C14"/>
+      <stop offset="50%" stop-color="#0D111A"/>
+      <stop offset="100%" stop-color="#05070B"/>
+    </linearGradient>
+
+    <!-- Ambient Glows -->
+    <radialGradient id="emeraldGlow" cx="15%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="purpleGlow" cx="85%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="blueGlow" cx="50%" cy="85%" r="50%">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Title Gradient -->
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="40%" stop-color="#E2E8F0"/>
+      <stop offset="70%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#A78BFA"/>
+    </linearGradient>
+
+    <!-- Card Gradients -->
+    <linearGradient id="cardGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="cardBorderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34D399" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.3"/>
+    </linearGradient>
+
+    <!-- Filter Shadows -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1200" height="460" rx="20" fill="url(#bgGrad)"/>
+  <rect width="1200" height="460" rx="20" fill="url(#emeraldGlow)"/>
+  <rect width="1200" height="460" rx="20" fill="url(#purpleGlow)"/>
+  <rect width="1200" height="460" rx="20" fill="url(#blueGlow)"/>
+
+  <!-- Subtle Matrix Grid -->
+  <g stroke="#334155" stroke-width="0.5" stroke-opacity="0.18">
+    <line x1="100" y1="0" x2="100" y2="460"/>
+    <line x1="250" y1="0" x2="250" y2="460"/>
+    <line x1="400" y1="0" x2="400" y2="460"/>
+    <line x1="550" y1="0" x2="550" y2="460"/>
+    <line x1="700" y1="0" x2="700" y2="460"/>
+    <line x1="850" y1="0" x2="850" y2="460"/>
+    <line x1="1000" y1="0" x2="1000" y2="460"/>
+    <line x1="0" y1="80" x2="1200" y2="80"/>
+    <line x1="0" y1="180" x2="1200" y2="180"/>
+    <line x1="0" y1="280" x2="1200" y2="280"/>
+    <line x1="0" y1="380" x2="1200" y2="380"/>
+  </g>
+
+  <!-- Outer Border -->
+  <rect x="1.5" y="1.5" width="1197" height="457" rx="19" fill="none" stroke="#334155" stroke-width="1.5" stroke-opacity="0.4"/>
+
+  <!-- Pill Header Badge -->
+  <g transform="translate(425, 48)">
+    <rect width="350" height="32" rx="16" fill="#1E293B" stroke="#34D399" stroke-width="1" stroke-opacity="0.6"/>
+    <circle cx="20" cy="16" r="5" fill="#10B981"/>
+    <text x="36" y="21" fill="#E2E8F0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" letter-spacing="1.5">
+      MILITARY-GRADE COVERT ARCHITECTURE
+    </text>
+  </g>
+
+  <!-- Hero Main Title -->
+  <text x="600" y="148" text-anchor="middle" fill="url(#titleGrad)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="48" font-weight="900" letter-spacing="-1">
+    CALCULATOR STEALTH VAULT
+  </text>
+
+  <!-- Subtitle Tagline -->
+  <text x="600" y="188" text-anchor="middle" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" letter-spacing="0.2">
+    High-Precision Mathematical Engine Concealing a Hardware-Encrypted Stealth Web Container
+  </text>
+
+  <!-- Feature Cards Row -->
+  <g transform="translate(85, 230)">
+    <!-- Card 1: Math Engine -->
+    <g transform="translate(0, 0)" filter="url(#shadow)">
+      <rect width="320" height="175" rx="14" fill="url(#cardGrad1)"/>
+      <rect width="320" height="175" rx="14" fill="none" stroke="url(#cardBorderGrad)" stroke-width="1.2"/>
+      <rect x="20" y="20" width="38" height="38" rx="9" fill="#064E3B" stroke="#059669" stroke-width="1"/>
+      <text x="39" y="44" text-anchor="middle" fill="#34D399" font-family="monospace" font-size="18" font-weight="bold">fx</text>
+      <text x="70" y="36" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700">Dijkstra Math Engine</text>
+      <text x="70" y="52" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5">Shunting-Yard &amp; BigDecimal</text>
+      <text x="20" y="86" fill="#CBD5E1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" line-height="1.5">
+        <tspan x="20" dy="0">• Zero IEEE-754 precision loss</tspan>
+        <tspan x="20" dy="20">• Full PEMDAS &amp; recursive brackets</tspan>
+        <tspan x="20" dy="20">• Fluid Jetpack Compose dark UI</tspan>
+        <tspan x="20" dy="20">• Authentic daily calculator decoy</tspan>
+      </text>
+    </g>
+
+    <!-- Card 2: Security & Encryption -->
+    <g transform="translate(355, 0)" filter="url(#shadow)">
+      <rect width="320" height="175" rx="14" fill="url(#cardGrad1)"/>
+      <rect width="320" height="175" rx="14" fill="none" stroke="url(#cardBorderGrad)" stroke-width="1.2"/>
+      <rect x="20" y="20" width="38" height="38" rx="9" fill="#312E81" stroke="#6366F1" stroke-width="1"/>
+      <text x="39" y="45" text-anchor="middle" fill="#A5B4FC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18">🔒</text>
+      <text x="70" y="36" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700">AES-256 GCM Vault</text>
+      <text x="70" y="52" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5">Hardware Keystore (TEE / TKM)</text>
+      <text x="20" y="86" fill="#CBD5E1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5">
+        <tspan x="20" dy="0">• Secret trigger formula: [ 7 × 7 = ]</tspan>
+        <tspan x="20" dy="20">• Emergency Panic Wipe: [ 0 0 0 0 = ]</tspan>
+        <tspan x="20" dy="20">• Harmless Decoy Portal: [ 1 1 1 1 = ]</tspan>
+        <tspan x="20" dy="20">• Zero plaintext secrets in storage</tspan>
+      </text>
+    </g>
+
+    <!-- Card 3: Anti-Forensics & Stealth -->
+    <g transform="translate(710, 0)" filter="url(#shadow)">
+      <rect width="320" height="175" rx="14" fill="url(#cardGrad1)"/>
+      <rect width="320" height="175" rx="14" fill="none" stroke="url(#cardBorderGrad)" stroke-width="1.2"/>
+      <rect x="20" y="20" width="38" height="38" rx="9" fill="#4C1D95" stroke="#8B5CF6" stroke-width="1"/>
+      <text x="39" y="45" text-anchor="middle" fill="#C4B5FD" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18">🛡️</text>
+      <text x="70" y="36" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700">Anti-Forensic Shield</text>
+      <text x="70" y="52" fill="#64748B" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5">Zero-Trace Physical Security</text>
+      <text x="20" y="86" fill="#CBD5E1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5">
+        <tspan x="20" dy="0">• WindowManager FLAG_SECURE</tspan>
+        <tspan x="20" dy="20">• Accelerometer flip-to-lock sensor</tspan>
+        <tspan x="20" dy="20">• Auto-lock monotonic timeout</tspan>
+        <tspan x="20" dy="20">• Automated clipboard sanitization</tspan>
+      </text>
+    </g>
+  </g>
+</svg>

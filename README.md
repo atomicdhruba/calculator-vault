@@ -1,15 +1,29 @@
 <div align="center">
 
+<img src="docs/assets/hero_banner.svg" alt="Calculator Stealth Vault Banner" width="100%"/>
+
 # 📱 Calculator Stealth Vault v2.0
+### *Covert Mathematical Architecture • Hardware-Backed Privacy • Zero-Trace Security*
 
-**An authentic, high-precision Android calculator concealing a hardware-encrypted privacy vault, hardened web container, and multi-layered anti-forensic safeguards.**
+<p align="center">
+  <a href="https://github.com/atomicdhruba/calculator-vault/releases"><img src="https://img.shields.io/github/v/release/atomicdhruba/calculator-vault?style=for-the-badge&color=10B981&label=Latest%20Release" alt="Release"></a>
+  <a href="https://developer.android.com"><img src="https://img.shields.io/badge/Platform-Android%207.0%2B%20(API%2024--36)-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Platform"></a>
+  <a href="https://kotlinlang.org"><img src="https://img.shields.io/badge/Kotlin-2.1.0-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white" alt="Kotlin"></a>
+  <a href="https://developer.android.com/jetpack/compose"><img src="https://img.shields.io/badge/Jetpack%20Compose-Material%203-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white" alt="Compose"></a>
+  <a href="https://github.com/atomicdhruba/calculator-vault/actions"><img src="https://img.shields.io/badge/Build%20%26%20Tests-52%20Passing-brightgreen?style=for-the-badge&logo=githubactions&logoColor=white" alt="CI"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License"></a>
+</p>
 
-[![Platform](https://img.shields.io/badge/Platform-Android%207.0%2B%20(API%2024--36)-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://developer.android.com)
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.0-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)](https://kotlinlang.org)
-[![Compose](https://img.shields.io/badge/Jetpack%20Compose-Material%203-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white)](https://developer.android.com/jetpack/compose)
-[![Security](https://img.shields.io/badge/Security-AES--256%20GCM-00C853?style=for-the-badge&logo=security&logoColor=white)](https://developer.android.com/reference/androidx/security/crypto/EncryptedSharedPreferences)
-[![Tests](https://img.shields.io/badge/Unit%20Tests-52%20Passing-brightgreen?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/atomicdhruba/calculator-vault)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](https://opensource.org/licenses/MIT)
+<p align="center">
+  <a href="#-overview">Overview</a> •
+  <a href="#-how-it-works">How It Works</a> •
+  <a href="#-secret-triggers--cheat-sheet">Secret Triggers</a> •
+  <a href="#-key-features">Features</a> •
+  <a href="#-v1-vs-v20-evolution">V1 vs V2 Evolution</a> •
+  <a href="#-architecture">Architecture</a> •
+  <a href="#-installation--build">Install &amp; Build</a> •
+  <a href="#-security-specs">Security</a>
+</p>
 
 </div>
 
@@ -17,122 +31,172 @@
 
 ## 🌟 Overview
 
-**Calculator Stealth Vault** is engineered to provide an uncompromised, authentic calculator experience on the surface while providing a zero-trace, hardware-encrypted private browser beneath.
+**Calculator Stealth Vault** looks, behaves, and calculates exactly like a high-precision, production-grade Android calculator. It features Dijkstra's Shunting-Yard algorithm, arbitrary-precision `BigDecimal` calculations, and a fluid dark-mode Material 3 interface.
 
-Ordinary users and casual observers interact with a fully functional, high-precision dark calculator. Entering your secret mathematical formula instantly shifts the application into a hardware-accelerated, anti-forensically hardened private session.
+Beneath this authentic surface lies a **hardened, hardware-encrypted stealth environment**. Entering your custom mathematical formula unlocks a private, high-performance WebKit container with fullscreen Reels/Stories playback, file-chooser photo/video uploads, automated banner suppression, and multi-layered anti-forensics (`FLAG_SECURE`, accelerometer face-down flip-to-lock, and zero-state panic shredding).
 
-```
-┌─────────────────────────────────┐
-│       Standard Calculator       │  ◄── Ordinary Day-to-Day Math
-│   (Shunting-Yard & BigDecimal)  │
-└────────────────┬────────────────┘
-                 │
-                 ├── [ 7 * 7 = ]  ────►  🔒 Master Vault (Private Web Session)
-                 ├── [ 1 1 1 1 = ] ───►  🎭 Decoy Mode (Harmless Fallback)
-                 └── [ 0 0 0 0 = ] ───►  🚨 Panic Wipe (Zero-State Storage Purge)
-```
+---
+
+## 👁️ How It Works
+
+<div align="center">
+  <img src="docs/assets/vault_preview.svg" alt="Calculator Decoy to Vault Transformation Preview" width="100%"/>
+</div>
+
+1. **The Decoy Surface**: Anyone opening the app encounters an authentic day-to-day calculator with reactive scaling, parentheses, percentages, and zero floating-point calculation errors.
+2. **The Covert Trigger**: Type your secret mathematical equation (default: `7 × 7`) and press `=`.
+3. **The Vault Container**: The calculator instantly transitions into a sandboxed, hardware-accelerated private session without launching external browser intents or leaving traces in Recent Apps.
+4. **Instant Lock & Purge**: Placing your phone face-down on a desk or swiping back immediately locks the app and purges the system clipboard.
+
+---
+
+## ⚡ Secret Triggers & Cheat Sheet
+
+| Input Expression | Action | Result & Security Behavior |
+| :--- | :---: | :--- |
+| **`7 × 7 =`** *(or `7*7`)* | 🔓 **Master Vault** | Unlocks the hardware-encrypted private Instagram / web session. |
+| **`1 1 1 1 =`** | 🎭 **Decoy Portal** | Opens an innocuous fallback page (Wikipedia) for plausible deniability under duress. |
+| **`0 0 0 0 =`** | 🚨 **Panic Wipe** | **Zero-State Purge**: Instantly destroys cookies, caches, WebStorage, and resets display to `0`. |
+| **`Flip Face-Down`** | 🔄 **Hardware Lock** | Accelerometer sensor (`z < -7.0f`) immediately locks vault and purges clipboard. |
+| **`App Backgrounded`** | ⏱️ **Auto-Lock** | Monotonic lifecycle timer triggers instant lock upon configurable timeout (default 0s). |
 
 ---
 
 ## ✨ Key Features
 
-### 🧮 Authentic Calculation Engine
-- **Full Precision Arithmetic**: Evaluates arithmetic expressions using Dijkstra's Shunting-Yard algorithm and `BigDecimal`, eliminating IEEE 754 floating-point errors (e.g. `0.1 + 0.2 = 0.3`).
-- **Complete PEMDAS/BODMAS Support**: Handles complex expressions with parentheses `()`, percentages `%`, unary toggle `+/-`, and multi-tiered operator precedence.
-- **Apple/Material Dark Theme**: Authentic circular buttons, reactive font scaling, haptic feedback, and clipboard copy support.
+### 🧮 High-Precision Math Engine
+- **Dijkstra's Shunting-Yard Evaluator**: Parses and processes arithmetic tokens with true operator precedence (PEMDAS / BODMAS).
+- **Zero Floating-Point Drift**: Powered by `java.math.BigDecimal` (eliminates IEEE-754 issues such as `0.1 + 0.2 = 0.30000000000000004`).
+- **Full Operational Support**: Supports nested parentheses `( )`, percentages `%`, unary negation `±`, and square-roots.
+- **Material 3 Fluid UI**: Haptic feedback on tap, adaptive font down-scaling for long outputs, and single-tap clipboard copy.
 
-### 🔐 Hardware-Backed Cryptographic Vault
-- **Android Keystore (AES-256 GCM)**: Master passcodes, settings, and URLs are stored via `EncryptedSharedPreferences` backed by hardware security modules (TEE / StrongBox).
-- **Custom Mathematical Trigger**: Set custom formula passcodes (e.g., `7*7`, `1234=`, or custom expressions).
-- **Decoy Mode**: Enter an alternate code (default `1111`) to open a harmless fallback site (e.g. Wikipedia) when under duress.
-- **Emergency Panic Wipe Protocol**: Entering `0000` immediately clears all stored preferences, flushes cookies, purges WebStorage, deletes WebView databases/cache, and returns the display to `0`.
+### 🔐 Cryptographic Storage & Security
+- **Hardware Keystore (AES-256 GCM)**: Passcodes, vault URLs, and timeout settings are stored via `EncryptedSharedPreferences` backed by the device's Trusted Execution Environment (TEE).
+- **Customizable Mathematical Passcodes**: Configure custom trigger formulas with full unicode operator normalization (`×` $\rightarrow$ `*`, `÷` $\rightarrow$ `/`).
+- **Emergency Panic Wipe Protocol**: Hardens your operational security by sanitizing all local SQLite databases, cookies, and cache directories in milliseconds.
 
-### 🛡️ Multi-Tiered Anti-Forensic Safeguards
-- **Window Protection (`FLAG_SECURE`)**: Prevents screenshots, screen recorders, and Recent Apps task switcher thumbnails.
-- **Flip-to-Lock Sensor**: Placing the device face-down on a surface (`z < -7.0f`) instantly locks the vault and purges the system clipboard.
-- **Monotonic Background Auto-Lock**: Tracks background elapsed time monotonically (`System.nanoTime()`), closing the vault after configurable grace periods without wall-clock drift.
-- **Clipboard Sanitization**: Purges the clipboard upon lock to ensure credentials and copied content leave zero memory traces.
+### 🛡️ Multi-Tiered Anti-Forensic Defense
+- **Screen Capture Shield (`FLAG_SECURE`)**: Blocks screenshots, screen mirroring, third-party screen recorders, and Recent Apps task switcher thumbnails.
+- **Accelerometer Flip-to-Lock**: Low-power sensor listener detects face-down physical orientation to immediately restore the calculator interface.
+- **Monotonic Lifecycle Auto-Lock**: Measures time using `System.nanoTime()` to prevent system clock tampering or timezone bypasses.
+- **Automated Clipboard Sanitizer**: Wipes clipboard contents upon vault lock to prevent password or link leaks.
 
-### 🌐 Hardened Web Engine
-- **Fullscreen Video**: Hardware-accelerated custom view container supporting Reels and Stories in native full-screen.
-- **Media Upload Pipeline**: Native Android `ActivityResult` file choosers for uploading photos and videos.
-- **Multi-Tiered Back Navigation**: Android Back gesture seamlessly navigates WebView history (`goBack()`), exits full-screen videos, or returns to the calculator.
-- **Automated DOM Optimization**: Asset-based script injection (`inject_instagram.js`) via `MutationObserver` suppresses app install banners, auto-clicks "Not Now", and enforces OLED dark mode.
+### 🌐 Hardened Web Container
+- **Native Fullscreen Video**: Hardware-accelerated custom view container supporting Instagram Reels and Stories in 60fps fullscreen.
+- **Media Upload Pipeline**: Android `ActivityResult` file pickers for direct photo, video, and story uploads.
+- **Automated DOM Shield (`inject_instagram.js`)**: Asynchronous `MutationObserver` automatically suppresses "Open in App" banners, dismisses "Save Login Info" prompts, and enforces dark styling.
+- **Isolated Sandboxing**: Restricts file schemes (`allowFileAccess = false`) and rejects unauthorized deep-links (`intent:`, `market:`).
 
-### 🔒 Binary Obfuscation & Minimization (R8)
-- **Class Repackaging**: All internal packages (`vault`, `calculator`, `webview`) are flattened into `com.stealth.calcbox.internal.*`.
-- **Log Stripping**: Strips debug logging (`Log.v`, `Log.d`, `Log.i`) from release bytecode.
-- **Resource Shrinking**: Removes unreferenced assets and shrinks final APK to **~3.07 MB**.
+### ⚡ Binary Obfuscation & R8 Pipeline
+- **Package Repackaging**: All internal packages (`vault`, `calculator`, `webview`) are repacked into `com.stealth.calcbox.internal.*`.
+- **Bytecode Stripping**: Dead code elimination and automatic removal of all debug logging (`Log.d`, `Log.v`, `Log.i`).
+- **Compact Footprint**: Resource shrinking and ProGuard optimization produce a release APK of only **~3.07 MB**.
+
+---
+
+## 📊 V1 vs V2.0 Evolution
+
+| Feature | Legacy V1 (Decompiled Baseline) | Stealth Vault v2.0 (Modernized) |
+| :--- | :---: | :---: |
+| **Android Architecture** | Legacy Java & XML layouts (2018) | **100% Modern Kotlin + Jetpack Compose** |
+| **Math Engine** | Naive string matching / eval | **Dijkstra Shunting-Yard + BigDecimal** |
+| **Passcode Storage** | Plaintext `SharedPreferences` XML | **AES-256 GCM (`EncryptedSharedPreferences`)** |
+| **Window Security** | ❌ None (Exposed in Recents) | **`FLAG_SECURE` Active (No screenshots/previews)** |
+| **Physical Defense** | ❌ None | **Accelerometer Face-Down Flip-to-Lock** |
+| **Duress Safeguards** | ❌ None | **Decoy Mode + Instant Panic Wipe (`0000=`)** |
+| **Instagram Media** | Crashes on Reels / Black screen | **Hardware Fullscreen Video + File Chooser** |
+| **DOM Banner Clutter** | Annoying "Open App" popups | **Clean `MutationObserver` DOM Automation** |
+| **Test Coverage** | 0 Unit Tests | **52 Passing Unit Tests (100% passing)** |
+| **Release Footprint** | Unoptimized binaries | **3.07 MB (R8 Minified & Obfuscated)** |
 
 ---
 
 ## 🏗️ Architecture
 
-The project follows modern Android MVVM clean architecture:
-
 ```
 app/src/main/java/com/stealth/calcbox/
-├── calculator/             # Mathematical evaluation engine & ViewModel
-│   ├── MathEngine.kt       # Dijkstra Shunting-Yard evaluator with BigDecimal
-│   └── CalculatorViewModel # Reactive StateFlow state manager
-├── ui/                     # Jetpack Compose presentation layer
-│   └── CalculatorScreen.kt # High-fidelity dark calculator UI
-├── vault/                  # Cryptography, anti-forensics & passcode evaluation
-│   ├── PasscodeConfig.kt   # Passcode normalization & action hierarchies
-│   ├── VaultSecurityManager# Hardware-backed EncryptedSharedPreferences & panic wipe
-│   └── AntiForensicsManager# FLAG_SECURE, sensor listener & clipboard sanitizer
-└── webview/                # Production webview engine & DOM automation
-    ├── VaultChromeClient   # File chooser launcher & fullscreen custom view
-    ├── VaultWebViewClient  # Scheme filtering & error containment
-    ├── VaultWebView        # Lifecycle-aware Compose AndroidView wrapper
-    └── ScriptInjector      # In-memory script caching & domain-restricted injection
+├── calculator/
+│   ├── MathEngine.kt            # Shunting-yard parser with arbitrary precision BigDecimal
+│   └── CalculatorViewModel.kt   # Unidirectional data flow StateFlow ViewModel
+├── ui/
+│   └── CalculatorScreen.kt      # Dark-mode Material 3 keypad & reactive display
+├── vault/
+│   ├── PasscodeConfig.kt        # Passcode normalization & action sealed interface
+│   ├── VaultSecurityManager.kt  # AES-256 GCM encrypted storage & panic wipe protocol
+│   └── AntiForensicsManager.kt  # FLAG_SECURE, accelerometer flip listener & clipboard sanitizer
+└── webview/
+    ├── VaultChromeClient.kt     # File chooser launcher & fullscreen custom view
+    ├── VaultWebViewClient.kt    # Scheme interception & load error containment
+    ├── VaultWebView.kt          # Compose AndroidView wrapper with lifecycle synchronization
+    └── ScriptInjector.kt        # Memory-cached asset injection & domain whitelist filtering
 ```
 
-For complete technical specifications, see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+> 📖 **Deep Technical Specification**: For state diagrams, cryptographic key derivation specs, and threat models, read the [Architecture Documentation](docs/ARCHITECTURE.md).
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Installation & Build
 
 ### Prerequisites
-- **JDK 17** or higher
 - **Android SDK** (Compile SDK 36, Min SDK 24)
+- **JDK 17** or higher
 
-### Clone & Build
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/atomicdhruba/calculator-vault.git
 cd calculator-vault
 ```
 
-### Run Unit Tests
+### 2. Run Test Suite
 ```bash
+# Windows
+.\gradlew.bat testDebugUnitTest
+
+# macOS / Linux
 ./gradlew testDebugUnitTest
 ```
-*Executes all 52 unit tests covering math evaluation, cryptographic storage, lifecycle auto-lock, and WebKit clients.*
+*Executes all 52 unit tests covering arithmetic precision, cryptography, anti-forensics, and WebKit handlers.*
 
-### Build Signed Release APK
-Run the automated release build script:
+### 3. Build Signed Release APK
+Run the automated release packaging script:
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts\build_release.ps1
 ```
 
-The optimized, minified, and signed release APK will be generated at:
+The optimized, minified APK will be ready at:
 ```
 app/build/outputs/apk/release/app-release.apk
 ```
 
 ---
 
-## 🔒 Security & Privacy Policy
+## 🔒 Security Specs
 
-- **Zero Telemetry**: No analytics SDKs, crash reporters, or background network beacons.
-- **On-Device Cryptography**: Passcodes and vault configurations never leave the device.
-- **Direct TLS Communication**: All web traffic communicates directly over official HTTPS protocols with strict mixed content blocking.
+```
+┌─────────────────────────────────────────────────────────────┐
+│                       SECURITY MATRIX                       │
+├───────────────────────┬─────────────────────────────────────┤
+│ Storage Cipher        │ AES-256 GCM                         │
+│ Master Key Management │ Android Keystore (TEE / StrongBox)  │
+│ Screen Protection     │ WindowManager.LayoutParams.FLAG_SECURE│
+│ Memory Sanitization   │ Clipboard clear on exit             │
+│ Anti-Reverse Eng.     │ R8 class repackaging & log stripping│
+│ Network Isolation     │ Zero telemetry, direct HTTPS only   │
+└───────────────────────┴─────────────────────────────────────┘
+```
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
-Developed with ❤️ by **[Atomic Dhruba](https://github.com/atomicdhruba)**.
+---
+
+<div align="center">
+
+Crafted with ❤️ by **[Atomic Dhruba](https://github.com/atomicdhruba)**
+
+**⭐ If you find this project useful or interesting, consider giving it a star! ⭐**
+
+</div>

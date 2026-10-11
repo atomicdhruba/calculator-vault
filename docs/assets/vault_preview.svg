@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="phoneBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#18181B"/>
+      <stop offset="100%" stop-color="#09090B"/>
+    </linearGradient>
+    <linearGradient id="phoneBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3F3F46"/>
+      <stop offset="100%" stop-color="#27272A"/>
+    </linearGradient>
+    <linearGradient id="accentOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF9F0A"/>
+      <stop offset="100%" stop-color="#FF7A00"/>
+    </linearGradient>
+    <linearGradient id="instaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#833AB4"/>
+      <stop offset="50%" stop-color="#FD1D1D"/>
+      <stop offset="100%" stop-color="#FCB045"/>
+    </linearGradient>
+    <filter id="phoneShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="20" flood-color="#000000" flood-opacity="0.8"/>
+    </filter>
+  </defs>
+
+  <rect width="960" height="480" rx="16" fill="#0A0D14"/>
+
+  <!-- Phone 1: Calculator Mode (The Decoy Surface) -->
+  <g transform="translate(120, 30)" filter="url(#phoneShadow)">
+    <!-- Phone Bezel -->
+    <rect width="250" height="420" rx="36" fill="url(#phoneBg)" stroke="url(#phoneBorder)" stroke-width="4"/>
+    <!-- Screen Notch/Island -->
+    <rect x="85" y="12" width="80" height="18" rx="9" fill="#000000"/>
+    <circle cx="150" cy="21" r="3.5" fill="#1C1917"/>
+
+    <!-- Calculator Display -->
+    <text x="225" y="80" text-anchor="end" fill="#71717A" font-family="-apple-system, sans-serif" font-size="16">7 × 7</text>
+    <text x="225" y="125" text-anchor="end" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="44" font-weight="300">49</text>
+
+    <!-- Keypad Grid (Circles) -->
+    <!-- Row 1 -->
+    <circle cx="45" cy="170" r="21" fill="#A1A1AA"/>
+    <text x="45" y="176" text-anchor="middle" fill="#000000" font-family="sans-serif" font-size="16" font-weight="600">AC</text>
+    <circle cx="98" cy="170" r="21" fill="#A1A1AA"/>
+    <text x="98" y="176" text-anchor="middle" fill="#000000" font-family="sans-serif" font-size="16" font-weight="600">±</text>
+    <circle cx="152" cy="170" r="21" fill="#A1A1AA"/>
+    <text x="152" y="176" text-anchor="middle" fill="#000000" font-family="sans-serif" font-size="16" font-weight="600">%</text>
+    <circle cx="205" cy="170" r="21" fill="url(#accentOrange)"/>
+    <text x="205" y="177" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-size="20">÷</text>
+
+    <!-- Row 2 -->
+    <circle cx="45" cy="222" r="21" fill="#27272A"/>
+    <text x="45" y="228" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-size="18">7</text>
+    <circle cx="98" cy="222" r="21" fill="#27272A"/>
+    <text x="98" y="228" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-size="18">8</text>
+    <circle cx="152" cy="222" r="21" fill="#27272A"/>
+    <text x="152" y="228" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-size="18">9</text>
+    <circle cx="205" cy="222" r="21" fill="url(#accentOrange)"/>
+    <text x="205" y="228" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-size="18">×</text>
+
+    <!-- Row 3 -->
+    <circle cx="45" cy="274" r="21" fill="#27272A"/>
+    <text x="45" y="280" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-size="18">4</text>
+    <circle cx="98" cy="274" r="21" fill="#27272A"/>
+    <text x="98" y="280" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-size="18">5</text>
+    <circle cx="152" cy="274" r="21" fill="#27272A"/>
+    <text x="152" y="280" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-size="18">6</text>
+    <circle cx="205" cy="274" r="21" fill="url(#accentOrange)"/>
+    <text x="205" y="280" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-size="20">−</text>
+
+    <!-- Row 4 -->
+    <circle cx="45" cy="326" r="21" fill="#27272A"/>
+    <text x="45" y="332" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-size="18">1</text>
+    <circle cx="98" cy="326" r="21" fill="#27272A"/>
+    <text x="98" y="332" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-size="18">2</text>
+    <circle cx="152" cy="326" r="21" fill="#27272A"/>
+    <text x="152" y="332" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-size="18">3</text>
+    <circle cx="205" cy="326" r="21" fill="url(#accentOrange)"/>
+    <text x="205" y="332" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-size="18">+</text>
+
+    <!-- Row 5 (Trigger Row) -->
+    <rect x="24" y="357" width="95" height="42" rx="21" fill="#27272A"/>
+    <text x="50" y="384" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-size="18">0</text>
+    <circle cx="152" cy="378" r="21" fill="#27272A"/>
+    <text x="152" y="384" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-size="18">.</text>
+    <!-- TRIGGER EQUALS BUTTON GLOWING -->
+    <circle cx="205" cy="378" r="21" fill="url(#accentOrange)" stroke="#34D399" stroke-width="2.5"/>
+    <text x="205" y="384" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-size="22">=</text>
+  </g>
+
+  <!-- Central Transformation Indicator -->
+  <g transform="translate(415, 185)">
+    <circle cx="65" cy="45" r="32" fill="#18181B" stroke="#10B981" stroke-width="2"/>
+    <text x="65" y="52" text-anchor="middle" fill="#10B981" font-family="sans-serif" font-size="22">⚡</text>
+    <path d="M 15 45 L 30 45" stroke="#34D399" stroke-width="2" stroke-dasharray="3,3"/>
+    <path d="M 100 45 L 115 45" stroke="#34D399" stroke-width="2" stroke-dasharray="3,3"/>
+    <text x="65" y="100" text-anchor="middle" fill="#E2E8F0" font-family="sans-serif" font-size="13" font-weight="700">COVERT UNLOCK</text>
+    <text x="65" y="118" text-anchor="middle" fill="#34D399" font-family="monospace" font-size="11.5">[ 7 × 7 = ]</text>
+    <text x="65" y="136" text-anchor="middle" fill="#94A3B8" font-family="sans-serif" font-size="10.5">Instant Transition</text>
+  </g>
+
+  <!-- Phone 2: Stealth Vault Mode (The Hardened Container) -->
+  <g transform="translate(590, 30)" filter="url(#phoneShadow)">
+    <!-- Phone Bezel -->
+    <rect width="250" height="420" rx="36" fill="#09090B" stroke="#10B981" stroke-width="3" stroke-opacity="0.8"/>
+    <!-- Screen Notch -->
+    <rect x="85" y="12" width="80" height="18" rx="9" fill="#000000"/>
+    <circle cx="150" cy="21" r="3.5" fill="#1C1917"/>
+
+    <!-- App Header -->
+    <rect x="15" y="42" width="220" height="34" rx="6" fill="#18181B"/>
+    <text x="28" y="64" fill="#FFFFFF" font-family="sans-serif" font-size="15" font-weight="bold">Instagram</text>
+    <!-- Privacy Shield Indicator -->
+    <g transform="translate(195, 49)">
+      <rect width="28" height="20" rx="10" fill="#064E3B"/>
+      <text x="14" y="14" text-anchor="middle" fill="#34D399" font-size="10">🔒</text>
+    </g>
+
+    <!-- Stories Tray Mockup -->
+    <circle cx="45" cy="106" r="18" fill="none" stroke="url(#instaGrad)" stroke-width="2.5"/>
+    <circle cx="45" cy="106" r="14" fill="#27272A"/>
+    <circle cx="95" cy="106" r="18" fill="none" stroke="url(#instaGrad)" stroke-width="2.5"/>
+    <circle cx="95" cy="106" r="14" fill="#27272A"/>
+    <circle cx="145" cy="106" r="18" fill="none" stroke="url(#instaGrad)" stroke-width="2.5"/>
+    <circle cx="145" cy="106" r="14" fill="#27272A"/>
+    <circle cx="195" cy="106" r="18" fill="none" stroke="url(#instaGrad)" stroke-width="2.5"/>
+    <circle cx="195" cy="106" r="14" fill="#27272A"/>
+
+    <!-- Hardened Web Container Feed Mockup -->
+    <rect x="20" y="140" width="210" height="190" rx="10" fill="#18181B"/>
+    <circle cx="40" cy="160" r="10" fill="#3F3F46"/>
+    <text x="58" y="164" fill="#E4E4E7" font-family="sans-serif" font-size="11" font-weight="600">secure_user</text>
+    <!-- Image Post Card -->
+    <rect x="30" y="180" width="190" height="115" rx="6" fill="#27272A"/>
+    <text x="125" y="245" text-anchor="middle" fill="#71717A" font-family="sans-serif" font-size="12">Hardware-Accelerated WebKit</text>
+
+    <!-- Safeguard Badge Overlay -->
+    <g transform="translate(30, 345)">
+      <rect width="190" height="50" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+      <text x="15" y="20" fill="#34D399" font-family="sans-serif" font-size="11" font-weight="bold">🛡️ Anti-Forensic Active</text>
+      <text x="15" y="37" fill="#94A3B8" font-family="sans-serif" font-size="9.5">FLAG_SECURE • Flip-to-Lock • No History</text>
+    </g>
+  </g>
+</svg>
