@@ -64,8 +64,7 @@
 # ------------------------------------------------------------------------------
 # 7. WebKit & WebView Integration
 # ------------------------------------------------------------------------------
-# Keep JavascriptInterface annotations and WebView client handlers
--keepattributes JavascriptInterface
+# Keep JavascriptInterface annotated methods and WebView client handlers
 -keepclassmembers class * {
     @android.webkit.JavascriptInterface <methods>;
 }
