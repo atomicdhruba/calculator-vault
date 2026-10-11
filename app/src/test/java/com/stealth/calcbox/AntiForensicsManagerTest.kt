@@ -13,9 +13,15 @@ class AntiForensicsManagerTest {
     @Test
     fun testInstantLockWhenTimeoutIsZero() {
         val manager = AntiForensicsManager()
+
+        // Unpaused: must NOT auto-lock even if timeout <= 0
+        assertFalse(manager.shouldAutoLock(resumeTimeMillis = 10_000L, timeoutSeconds = 0))
+        assertFalse(manager.shouldAutoLock(timeoutSeconds = 0))
+        assertFalse(manager.shouldAutoLock(timeoutSeconds = -1))
+
         manager.recordPauseTime(10_000L)
 
-        // Timeout <= 0 must always return true (instant lock)
+        // Paused: Timeout <= 0 must always return true (instant lock)
         assertTrue(manager.shouldAutoLock(resumeTimeMillis = 10_000L, timeoutSeconds = 0))
         assertTrue(manager.shouldAutoLock(resumeTimeMillis = 10_001L, timeoutSeconds = 0))
         assertTrue(manager.shouldAutoLock(resumeTimeMillis = 10_000L, timeoutSeconds = -1))
@@ -104,20 +110,31 @@ class AntiForensicsManagerTest {
     @Test
     fun testFlipToLockSensorListenerCallback() {
         val listener = FlipToLockSensorListener()
-        var faceDownTriggered = false
+        var faceDownTriggerCount = 0
 
         listener.register(context = FakeContext()) {
-            faceDownTriggered = true
+            faceDownTriggerCount++
         }
 
         assertFalse(listener.isCurrentlyFaceDown())
-        assertFalse(faceDownTriggered)
+        assertEquals(0, faceDownTriggerCount)
 
         // Simulate face down detection
         listener.simulateFaceDown()
 
         assertTrue(listener.isCurrentlyFaceDown())
-        assertTrue(faceDownTriggered)
+        assertEquals(1, faceDownTriggerCount)
+
+        // Re-registering with new callback replaces old one safely
+        var newTriggerCount = 0
+        listener.register(context = FakeContext()) {
+            newTriggerCount++
+        }
+        assertFalse(listener.isCurrentlyFaceDown())
+
+        listener.simulateFaceDown()
+        assertEquals(1, faceDownTriggerCount) // Old callback not invoked again
+        assertEquals(1, newTriggerCount)
 
         // Unregister cleans up callback
         listener.unregister()

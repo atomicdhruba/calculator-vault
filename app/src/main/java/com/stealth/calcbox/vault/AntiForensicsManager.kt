@@ -16,7 +16,7 @@ import android.view.WindowManager
  * auto-lock lifecycle grace periods, clipboard purging, and flip-to-lock detection.
  */
 class AntiForensicsManager(
-    private val clock: () -> Long = { System.currentTimeMillis() }
+    private val clock: () -> Long = { System.nanoTime() / 1_000_000L }
 ) {
     val flipSensorListener: FlipToLockSensorListener by lazy { FlipToLockSensorListener() }
 
@@ -42,18 +42,18 @@ class AntiForensicsManager(
      * Checks if the app should auto-lock upon returning to foreground.
      *
      * Rules:
+     * - If no pause time was recorded: returns false (not returning from pause).
      * - If [timeoutSeconds] <= 0: returns true (instant auto-lock on pause).
      * - If [timeoutSeconds] > 0: returns true if (resumeTimeMillis - pauseTimeMillis) >= timeoutSeconds * 1000L.
-     * - If no pause time was recorded: returns false (not returning from pause).
      */
     fun shouldAutoLock(
         resumeTimeMillis: Long = clock(),
         timeoutSeconds: Int
     ): Boolean {
+        val paused = pauseTimeMillis ?: return false
         if (timeoutSeconds <= 0) {
             return true
         }
-        val paused = pauseTimeMillis ?: return false
         return (resumeTimeMillis - paused) >= (timeoutSeconds * 1000L)
     }
 
@@ -96,22 +96,22 @@ class AntiForensicsManager(
     /**
      * Unregisters flip-to-lock sensor listener.
      */
-    fun unregisterFlipSensor(context: Context? = null) {
-        flipSensorListener.unregister(context)
+    fun unregisterFlipSensor() {
+        flipSensorListener.unregister()
     }
 
     companion object {
         fun enableSecureWindow(activity: Activity) {
             try {
                 activity.window?.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
-            } catch (_: Throwable) {
+            } catch (_: Exception) {
             }
         }
 
         fun disableSecureWindow(activity: Activity) {
             try {
                 activity.window?.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
-            } catch (_: Throwable) {
+            } catch (_: Exception) {
             }
         }
 
@@ -124,14 +124,14 @@ class AntiForensicsManager(
                 } else {
                     clipboardManager.setPrimaryClip(ClipData.newPlainText("", ""))
                 }
-            } catch (_: Throwable) {
+            } catch (_: Exception) {
             }
         }
     }
 }
 
 /**
- * SensorEventListener that monitors device orientation and proximity.
+ * SensorEventListener that monitors device orientation via accelerometer.
  * When the device is turned face-down (e.g. negative Z acceleration),
  * triggers an instant callback to immediately lock the vault.
  */
@@ -139,8 +139,8 @@ class FlipToLockSensorListener : SensorEventListener {
 
     private var sensorManager: SensorManager? = null
     private var accelerometer: Sensor? = null
-    private var proximitySensor: Sensor? = null
     private var onFaceDown: (() -> Unit)? = null
+    @Volatile
     private var isFaceDown: Boolean = false
 
     companion object {
@@ -149,10 +149,12 @@ class FlipToLockSensorListener : SensorEventListener {
     }
 
     fun register(context: Context, onFaceDown: () -> Unit) {
+        unregister()
         this.onFaceDown = onFaceDown
         this.isFaceDown = false
         try {
-            val sm = context.getSystemService(Context.SENSOR_SERVICE) as? SensorManager
+            val appContext = context.applicationContext ?: context
+            val sm = appContext.getSystemService(Context.SENSOR_SERVICE) as? SensorManager
                 ?: return
             this.sensorManager = sm
 
@@ -160,23 +162,17 @@ class FlipToLockSensorListener : SensorEventListener {
             accelerometer?.let {
                 sm.registerListener(this, it, SensorManager.SENSOR_DELAY_UI)
             }
-
-            proximitySensor = sm.getDefaultSensor(Sensor.TYPE_PROXIMITY)
-            proximitySensor?.let {
-                sm.registerListener(this, it, SensorManager.SENSOR_DELAY_UI)
-            }
-        } catch (_: Throwable) {
+        } catch (_: Exception) {
         }
     }
 
-    fun unregister(context: Context? = null) {
+    fun unregister() {
         try {
             sensorManager?.unregisterListener(this)
-        } catch (_: Throwable) {
+        } catch (_: Exception) {
         } finally {
             sensorManager = null
             accelerometer = null
-            proximitySensor = null
             onFaceDown = null
             isFaceDown = false
         }
@@ -185,25 +181,15 @@ class FlipToLockSensorListener : SensorEventListener {
     override fun onSensorChanged(event: SensorEvent?) {
         if (event == null) return
 
-        when (event.sensor.type) {
-            Sensor.TYPE_ACCELEROMETER -> {
-                val z = event.values.getOrNull(2) ?: return
-                if (z < FACE_DOWN_Z_THRESHOLD) {
-                    if (!isFaceDown) {
-                        isFaceDown = true
-                        onFaceDown?.invoke()
-                    }
-                } else if (z > FACE_UP_Z_RESET_THRESHOLD) {
-                    isFaceDown = false
+        if (event.sensor.type == Sensor.TYPE_ACCELEROMETER) {
+            val z = event.values.getOrNull(2) ?: return
+            if (z < FACE_DOWN_Z_THRESHOLD) {
+                if (!isFaceDown) {
+                    isFaceDown = true
+                    onFaceDown?.invoke()
                 }
-            }
-            Sensor.TYPE_PROXIMITY -> {
-                val distance = event.values.getOrNull(0) ?: return
-                val maxRange = event.sensor.maximumRange
-                val isNear = distance < 1.0f || (maxRange > 0f && distance < maxRange)
-                if (isNear && !isFaceDown) {
-                    // Proximity can reinforce face-down trigger
-                }
+            } else if (z > FACE_UP_Z_RESET_THRESHOLD) {
+                isFaceDown = false
             }
         }
     }

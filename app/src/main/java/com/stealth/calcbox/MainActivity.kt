@@ -94,7 +94,7 @@ class MainActivity : ComponentActivity() {
             0
         }
 
-        if (antiForensicsManager.shouldAutoLock(timeoutSeconds = timeoutSeconds)) {
+        if (isVaultUnlocked && antiForensicsManager.shouldAutoLock(timeoutSeconds = timeoutSeconds)) {
             lockVault()
             antiForensicsManager.purgeClipboard(this)
         }
@@ -102,8 +102,10 @@ class MainActivity : ComponentActivity() {
 
         antiForensicsManager.registerFlipSensor(this) {
             runOnUiThread {
-                lockVault()
-                antiForensicsManager.purgeClipboard(this)
+                if (isVaultUnlocked) {
+                    lockVault()
+                    antiForensicsManager.purgeClipboard(this)
+                }
             }
         }
     }
@@ -111,7 +113,7 @@ class MainActivity : ComponentActivity() {
     override fun onPause() {
         super.onPause()
         antiForensicsManager.recordPauseTime()
-        antiForensicsManager.unregisterFlipSensor(this)
+        antiForensicsManager.unregisterFlipSensor()
     }
 
     fun lockVault() {
