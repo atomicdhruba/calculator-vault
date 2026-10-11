@@ -9,7 +9,6 @@
 -allowaccessmodification
 
 # Optimization settings
--optimizationpasses 5
 -dontusemixedcaseclassnames
 -dontskipnonpubliclibraryclasses
 -verbose
