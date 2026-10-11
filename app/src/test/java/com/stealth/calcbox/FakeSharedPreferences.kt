@@ -49,43 +49,38 @@ class FakeSharedPreferences : SharedPreferences {
         private val removed = mutableSetOf<String>()
         private var clearAll = false
 
-        override fun putString(key: String?, value: String?): SharedPreferences.Editor {
-            key?.let { temp[it] = value }
+        private fun putInternal(key: String?, value: Any?): SharedPreferences.Editor {
+            if (key != null) {
+                removed.remove(key)
+                temp[key] = value
+            }
             return this
         }
 
-        override fun putStringSet(key: String?, values: MutableSet<String>?): SharedPreferences.Editor {
-            key?.let { temp[it] = values }
-            return this
-        }
+        override fun putString(key: String?, value: String?): SharedPreferences.Editor = putInternal(key, value)
 
-        override fun putInt(key: String?, value: Int): SharedPreferences.Editor {
-            key?.let { temp[it] = value }
-            return this
-        }
+        override fun putStringSet(key: String?, values: MutableSet<String>?): SharedPreferences.Editor = putInternal(key, values)
 
-        override fun putLong(key: String?, value: Long): SharedPreferences.Editor {
-            key?.let { temp[it] = value }
-            return this
-        }
+        override fun putInt(key: String?, value: Int): SharedPreferences.Editor = putInternal(key, value)
 
-        override fun putFloat(key: String?, value: Float): SharedPreferences.Editor {
-            key?.let { temp[it] = value }
-            return this
-        }
+        override fun putLong(key: String?, value: Long): SharedPreferences.Editor = putInternal(key, value)
 
-        override fun putBoolean(key: String?, value: Boolean): SharedPreferences.Editor {
-            key?.let { temp[it] = value }
-            return this
-        }
+        override fun putFloat(key: String?, value: Float): SharedPreferences.Editor = putInternal(key, value)
+
+        override fun putBoolean(key: String?, value: Boolean): SharedPreferences.Editor = putInternal(key, value)
 
         override fun remove(key: String?): SharedPreferences.Editor {
-            key?.let { removed.add(it) }
+            if (key != null) {
+                temp.remove(key)
+                removed.add(key)
+            }
             return this
         }
 
         override fun clear(): SharedPreferences.Editor {
             clearAll = true
+            temp.clear()
+            removed.clear()
             return this
         }
 

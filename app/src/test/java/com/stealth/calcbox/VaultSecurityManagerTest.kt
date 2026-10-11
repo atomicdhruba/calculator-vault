@@ -218,4 +218,50 @@ class VaultSecurityManagerTest {
         })
         assertTrue(callbackInvoked)
     }
+
+    @Test
+    fun testPanicWipeWipesStoredPreferences() {
+        vaultSecurityManager.updatePrimaryPasscode("SECRET123")
+        vaultSecurityManager.updateVaultUrl("https://sensitive-vault.internal/")
+        assertEquals("SECRET123", vaultSecurityManager.getSettings().primaryPasscode)
+
+        vaultSecurityManager.executePanicWipe(context = null)
+
+        // After panic wipe, preferences are completely wiped on disk, reverting to default fallback constants
+        val settingsAfterWipe = vaultSecurityManager.getSettings()
+        assertEquals(PasscodeSettings.DEFAULT_PRIMARY_PASSCODE, settingsAfterWipe.primaryPasscode)
+        assertEquals(PasscodeSettings.DEFAULT_VAULT_URL, settingsAfterWipe.vaultUrl)
+    }
+
+    @Test
+    fun testPasscodeCollisionPrecedence() {
+        // When both panic and primary passcodes match the same code, PanicWipe MUST take precedence
+        vaultSecurityManager.updatePrimaryPasscode("9999")
+        vaultSecurityManager.updatePanicPasscode("9999")
+
+        val action = vaultSecurityManager.evaluateInput("9999", "9999")
+        assertEquals(VaultAction.PanicWipe, action)
+    }
+
+    @Test
+    fun testStatePersistenceAcrossInstances() {
+        vaultSecurityManager.updatePrimaryPasscode("4321")
+        vaultSecurityManager.updateVaultUrl("https://new-vault.com/")
+
+        val secondaryManager = VaultSecurityManager(fakePrefs)
+        val settings = secondaryManager.getSettings()
+        assertEquals("4321", settings.primaryPasscode)
+        assertEquals("https://new-vault.com/", settings.vaultUrl)
+
+        val action = secondaryManager.evaluateInput("4321", "4321")
+        assertTrue(action is VaultAction.UnlockVault)
+        assertEquals("https://new-vault.com/", (action as VaultAction.UnlockVault).targetUrl)
+    }
+
+    @Test
+    fun testEmptyAndBlankInputs() {
+        assertEquals(VaultAction.None, vaultSecurityManager.evaluateInput("", ""))
+        assertEquals(VaultAction.None, vaultSecurityManager.evaluateInput("   ", "   "))
+        assertEquals(VaultAction.None, vaultSecurityManager.evaluateInput("=", "="))
+    }
 }

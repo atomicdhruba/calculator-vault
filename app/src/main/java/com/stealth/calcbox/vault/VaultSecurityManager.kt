@@ -18,6 +18,7 @@ class VaultSecurityManager(
 
     companion object {
         const val PREFS_FILE = "vault_security_prefs"
+        const val FALLBACK_PREFS_FILE = "vault_security_fallback_prefs"
 
         const val KEY_PRIMARY_PASSCODE = "primary_passcode"
         const val KEY_DECOY_PASSCODE = "decoy_passcode"
@@ -30,7 +31,8 @@ class VaultSecurityManager(
         /**
          * Factory method for Android runtime using hardware-backed [EncryptedSharedPreferences]
          * with AES-256 GCM encryption scheme. Gracefully falls back to private prefs if
-         * Keystore provider is unavailable.
+         * Keystore provider is unavailable. Uses distinct fallback file to prevent corrupting
+         * encrypted keysets.
          */
         fun create(context: Context): VaultSecurityManager {
             val prefs = try {
@@ -45,9 +47,9 @@ class VaultSecurityManager(
                     EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
                     EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
                 )
-            } catch (_: Throwable) {
-                // Safe fallback for testing or compromised keystore
-                context.getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE)
+            } catch (e: Exception) {
+                // Safe fallback with distinct file to avoid Keystore keyset collisions
+                context.getSharedPreferences(FALLBACK_PREFS_FILE, Context.MODE_PRIVATE)
             }
             return VaultSecurityManager(prefs)
         }
@@ -189,46 +191,50 @@ class VaultSecurityManager(
 
     /**
      * Performs an immediate, destructive anti-forensic purge of all stored web sessions,
-     * cookies, WebView cache, databases, and local storage.
+     * cookies, WebView cache, databases, local storage, and stored vault secrets on disk.
      */
     fun executePanicWipe(context: Context? = null, onWipeComplete: (() -> Unit)? = null) {
-        // 1. Purge cookies via CookieManager
+        // 1. Completely wipe stored vault secrets, passcodes, and target URLs from disk
+        try {
+            preferences.edit().clear().commit()
+        } catch (_: Exception) {
+        }
+
+        // 2. Purge cookies via CookieManager
         try {
             val cookieManager = CookieManager.getInstance()
-            cookieManager.removeAllCookies(null)
-            cookieManager.flush()
-        } catch (_: Throwable) {
+            cookieManager.removeAllCookies {
+                cookieManager.flush()
+            }
+        } catch (_: Exception) {
             // Handled when running under JVM unit test or WebView not initialized
         }
 
-        // 2. Purge HTML5 WebStorage
+        // 3. Purge HTML5 WebStorage
         try {
             WebStorage.getInstance().deleteAllData()
-        } catch (_: Throwable) {
+        } catch (_: Exception) {
             // Handled when running under JVM unit test
         }
 
-        // 3. Purge WebView databases, caches, and filesystem directories
+        // 4. Purge WebView databases, caches, and filesystem directories
         try {
             context?.let { ctx ->
                 ctx.cacheDir?.deleteRecursively()
                 ctx.getDatabasePath("webview.db")?.delete()
                 ctx.getDatabasePath("webviewCache.db")?.delete()
-                val dataDir = ctx.applicationInfo?.dataDir
-                if (dataDir != null) {
-                    val webViewDir = File(dataDir, "app_webview")
-                    if (webViewDir.exists()) {
-                        webViewDir.deleteRecursively()
-                    }
+                val webViewDir = File(ctx.dataDir, "app_webview")
+                if (webViewDir.exists()) {
+                    webViewDir.deleteRecursively()
                 }
             }
-        } catch (_: Throwable) {
+        } catch (_: Exception) {
         }
 
-        // 4. Notify completion callback (e.g. to clear calculation history and reset UI state)
+        // 5. Notify completion callback (e.g. to clear calculation history and reset UI state)
         try {
             onWipeComplete?.invoke()
-        } catch (_: Throwable) {
+        } catch (_: Exception) {
         }
     }
 }

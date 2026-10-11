@@ -17,7 +17,7 @@ sealed interface VaultAction {
  */
 fun normalizeExpression(input: String): String {
     return input
-        .replace(Regex("\\s+"), "")
+        .filterNot { it.isWhitespace() }
         .replace("×", "*")
         .replace("✕", "*")
         .replace("÷", "/")
