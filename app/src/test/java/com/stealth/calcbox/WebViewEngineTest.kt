@@ -212,7 +212,7 @@ class WebViewEngineTest {
             blockedUrls.add(url)
         }
 
-        // Native app intents, Play Store, deep links, mail, and tel schemes
+        // Native app intents, Play Store, deep links, mail, tel, and javascript schemes
         // Must return true to consume and prevent leakage or ERR_UNKNOWN_URL_SCHEME
         assertTrue(client.shouldOverrideUrl("intent://instagram.com/#Intent;package=com.instagram.android;end"))
         assertTrue(client.shouldOverrideUrl("market://details?id=com.instagram.android"))
@@ -221,10 +221,14 @@ class WebViewEngineTest {
         assertTrue(client.shouldOverrideUrl("tel:+1234567890"))
         assertTrue(client.shouldOverrideUrl("sms:12345"))
         assertTrue(client.shouldOverrideUrl("whatsapp://send?text=hello"))
+        assertTrue(client.shouldOverrideUrl("javascript:alert(1)"))
+        assertTrue(client.shouldOverrideUrl("   intent://instagram.com/test   "))
 
-        assertEquals(7, blockedUrls.size)
+        assertEquals(9, blockedUrls.size)
         assertTrue(blockedUrls.contains("market://details?id=com.instagram.android"))
         assertTrue(blockedUrls.contains("intent://instagram.com/#Intent;package=com.instagram.android;end"))
+        assertTrue(blockedUrls.contains("javascript:alert(1)"))
+        assertTrue(blockedUrls.contains("intent://instagram.com/test"))
     }
 
     @Test

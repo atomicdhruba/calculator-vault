@@ -56,7 +56,7 @@ fun VaultWebView(
     var webView by remember { mutableStateOf<WebView?>(null) }
     var customView by remember { mutableStateOf<View?>(null) }
     var progress by remember { mutableIntStateOf(0) }
-    var lastLoadedUrl by remember { mutableStateOf("") }
+    val lastLoadedUrl = remember { object { var value = "" } }
 
     val chromeClient = remember {
         VaultChromeClient()
@@ -78,29 +78,31 @@ fun VaultWebView(
         chromeClient.onReceiveFiles(uris)
     }
 
-    // Configure chrome client callbacks
-    chromeClient.onOpenFileChooser = { _, fileChooserParams ->
-        try {
-            val intent = fileChooserParams?.createIntent() ?: Intent(Intent.ACTION_GET_CONTENT).apply {
-                type = "*/*"
-                addCategory(Intent.CATEGORY_OPENABLE)
+    // Configure chrome client callbacks once
+    LaunchedEffect(chromeClient) {
+        chromeClient.onOpenFileChooser = { _, fileChooserParams ->
+            try {
+                val intent = fileChooserParams?.createIntent() ?: Intent(Intent.ACTION_GET_CONTENT).apply {
+                    type = "*/*"
+                    addCategory(Intent.CATEGORY_OPENABLE)
+                }
+                fileChooserLauncher.launch(intent)
+            } catch (_: Exception) {
+                chromeClient.resetFilePathCallback()
             }
-            fileChooserLauncher.launch(intent)
-        } catch (_: Exception) {
-            chromeClient.resetFilePathCallback()
         }
-    }
 
-    chromeClient.onShowCustomViewListener = { view, _ ->
-        customView = view
-    }
+        chromeClient.onShowCustomViewListener = { view, _ ->
+            customView = view
+        }
 
-    chromeClient.onHideCustomViewListener = {
-        customView = null
-    }
+        chromeClient.onHideCustomViewListener = {
+            customView = null
+        }
 
-    chromeClient.onProgressUpdate = { newProgress ->
-        progress = newProgress
+        chromeClient.onProgressUpdate = { newProgress ->
+            progress = newProgress
+        }
     }
 
     val webViewClient = remember {
@@ -124,10 +126,26 @@ fun VaultWebView(
         }
     }
 
+    // Bind activity/composable lifecycle to pause/resume WebView
+    val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
+    DisposableEffect(lifecycleOwner, webView) {
+        val observer = androidx.lifecycle.LifecycleEventObserver { _, event ->
+            when (event) {
+                androidx.lifecycle.Lifecycle.Event.ON_PAUSE -> webView?.onPause()
+                androidx.lifecycle.Lifecycle.Event.ON_RESUME -> webView?.onResume()
+                else -> Unit
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
+    }
+
     // React to external URL parameter updates
     LaunchedEffect(url) {
-        if (url.isNotBlank() && url != lastLoadedUrl) {
-            lastLoadedUrl = url
+        if (url.isNotBlank() && url != lastLoadedUrl.value) {
+            lastLoadedUrl.value = url
             webView?.loadUrl(url)
         }
     }
@@ -135,17 +153,22 @@ fun VaultWebView(
     // Cleanup when leaving composition
     DisposableEffect(Unit) {
         onDispose {
+            if (chromeClient.isCustomViewShowing) {
+                chromeClient.onHideCustomView()
+            }
             chromeClient.resetFilePathCallback()
             webView?.apply {
                 stopLoading()
+                (parent as? ViewGroup)?.removeView(this)
                 loadUrl("about:blank")
                 onPause()
-                pauseTimers()
                 destroy()
             }
             webView = null
         }
     }
+
+    val isProgressVisible by remember { androidx.compose.runtime.derivedStateOf { progress in 1..99 } }
 
     Box(
         modifier = modifier
@@ -155,6 +178,7 @@ fun VaultWebView(
         AndroidView(
             factory = { context ->
                 WebView(context).apply {
+                    resumeTimers()
                     layoutParams = ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.MATCH_PARENT
@@ -187,7 +211,7 @@ fun VaultWebView(
 
                     if (url.isNotBlank()) {
                         loadUrl(url)
-                        lastLoadedUrl = url
+                        lastLoadedUrl.value = url
                     }
 
                     webView = this
@@ -197,7 +221,7 @@ fun VaultWebView(
         )
 
         // Loading progress indicator
-        if (progress in 1..99) {
+        if (isProgressVisible) {
             LinearProgressIndicator(
                 progress = { progress / 100f },
                 modifier = Modifier
@@ -221,6 +245,9 @@ fun VaultWebView(
                             val cv = customView
                             (cv?.parent as? ViewGroup)?.removeView(cv)
                             cv ?: View(context)
+                        },
+                        onRelease = { view ->
+                            (view.parent as? ViewGroup)?.removeView(view)
                         },
                         modifier = Modifier.fillMaxSize()
                     )
