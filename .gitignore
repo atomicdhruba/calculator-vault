@@ -1,11 +1,33 @@
+# Built binaries & APKs
 *.apk
+*.aab
+*.ap_
+*.dex
 extracted_apk/
-*.pyc
-__pycache__/
+release/
+
+# Build caches & outputs
 .gradle/
 build/
 app/build/
+.cxx/
+.externalNativeBuild/
+
+# IDE & OS files
 .idea/
 *.iml
-local.properties
 .DS_Store
+Thumbs.db
+*.log
+captures/
+
+# Python scratch files
+*.py
+*.pyc
+__pycache__/
+
+# Local SDK configuration & secrets
+local.properties
+*.jks
+*.keystore
+secrets.properties
