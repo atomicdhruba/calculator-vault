@@ -25,6 +25,13 @@ object ScriptInjector {
     fun isInstagramDomain(url: String?): Boolean {
         if (url.isNullOrBlank()) return false
         val trimmed = url.trim()
+        val lower = trimmed.lowercase()
+
+        // Restrict to standard web schemes (http / https)
+        if (!lower.startsWith("http://") && !lower.startsWith("https://")) {
+            return false
+        }
+
         val host = try {
             val uri = URI(trimmed)
             uri.host?.lowercase()
@@ -42,10 +49,12 @@ object ScriptInjector {
         } else {
             url
         }
-        val hostPart = withoutScheme
+        val authority = withoutScheme
             .substringBefore('/')
             .substringBefore('?')
             .substringBefore('#')
+        val hostPart = authority
+            .substringAfterLast('@')
             .substringBefore(':')
             .trim()
         return hostPart.lowercase().takeIf { it.isNotEmpty() }
@@ -70,7 +79,9 @@ object ScriptInjector {
             } catch (_: Exception) {
                 ""
             }
-            cachedScript = script
+            if (script.isNotBlank()) {
+                cachedScript = script
+            }
             return script
         }
     }
@@ -81,7 +92,10 @@ object ScriptInjector {
     fun inject(webView: WebView, context: Context) {
         val script = getOrLoadScript(context)
         if (script.isNotBlank()) {
-            webView.evaluateJavascript(script, null)
+            try {
+                webView.evaluateJavascript(script, null)
+            } catch (_: Exception) {
+            }
         }
     }
 

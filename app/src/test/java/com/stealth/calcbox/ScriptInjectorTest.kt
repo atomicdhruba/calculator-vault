@@ -56,6 +56,9 @@ class ScriptInjectorTest {
         assertFalse(ScriptInjector.isInstagramDomain("https://notinstagram.com/"))
         assertFalse(ScriptInjector.isInstagramDomain("https://fakeinstagram.com/"))
         assertFalse(ScriptInjector.isInstagramDomain("https://instagram.com.attacker.com/"))
+        assertFalse(ScriptInjector.isInstagramDomain("https://instagram.com:secret@attacker.com/test"))
+        assertFalse(ScriptInjector.isInstagramDomain("ftp://instagram.com/"))
+        assertFalse(ScriptInjector.isInstagramDomain("custom://instagram.com/"))
         assertFalse(ScriptInjector.isInstagramDomain("about:blank"))
         assertFalse(ScriptInjector.isInstagramDomain("data:text/html,test"))
         assertFalse(ScriptInjector.isInstagramDomain(null))
@@ -125,6 +128,21 @@ class ScriptInjectorTest {
         ScriptInjector.inject(mockWebView, mockContext)
 
         verify(mockWebView).evaluateJavascript(eq(script), anyOrNull())
+    }
+
+    @Test
+    fun testInjectHandlesWebViewExceptionsGracefully() {
+        val mockWebView = mock(WebView::class.java)
+        val mockContext = mock(Context::class.java)
+
+        val script = "(function() { window.__calcbox = true; })();"
+        ScriptInjector.setCachedScript(script)
+
+        whenever(mockWebView.evaluateJavascript(eq(script), anyOrNull()))
+            .thenThrow(IllegalStateException("WebView is destroyed"))
+
+        // Should not throw or crash
+        ScriptInjector.inject(mockWebView, mockContext)
     }
 
     @Test

@@ -63,6 +63,9 @@
                 'a[href*="play.google.com"], a[href*="itunes.apple.com"], a[href*="apps.apple.com"], a[href*="instagram://"]'
             );
             storeLinks.forEach(function (link) {
+                if (link.dataset.calcboxProcessed) return;
+                link.dataset.calcboxProcessed = 'true';
+
                 let el = link;
                 let banner = null;
                 for (let i = 0; i < 6 && el && el !== document.body; i++) {
@@ -82,7 +85,7 @@
             });
 
             // Suppress dialog overlays promoting the app installation
-            const dialogs = document.querySelectorAll('div[role="dialog"], div[role="alertdialog"]');
+            const dialogs = document.querySelectorAll('div[role="dialog"], div[role="alertdialog"], [role="dialog"]');
             dialogs.forEach(function (dialog) {
                 const text = (dialog.textContent || '').toLowerCase();
                 const isAppUpsell =
@@ -94,14 +97,17 @@
                     text.includes('get the app');
 
                 if (isAppUpsell) {
-                    const closeBtn = dialog.querySelector('button[aria-label="Close"], button');
-                    if (
-                        closeBtn &&
-                        (closeBtn.getAttribute('aria-label') === 'Close' ||
-                            (closeBtn.textContent || '').toLowerCase().includes('close') ||
-                            (closeBtn.textContent || '').toLowerCase().includes('not now'))
-                    ) {
-                        closeBtn.click();
+                    const closeBtn = dialog.querySelector('button[aria-label="Close"], button[aria-label="Dismiss"]') ||
+                        Array.from(dialog.querySelectorAll('button')).find(function (b) {
+                            const t = (b.textContent || '').toLowerCase();
+                            return t.includes('close') || t.includes('not now') || t.includes('dismiss');
+                        });
+
+                    if (closeBtn) {
+                        if (!closeBtn.dataset.calcboxClicked) {
+                            closeBtn.dataset.calcboxClicked = 'true';
+                            closeBtn.click();
+                        }
                     } else {
                         dialog.style.setProperty('display', 'none', 'important');
                         const parent = dialog.parentElement;
@@ -119,7 +125,7 @@
      */
     function dismissPopups() {
         try {
-            const containers = document.querySelectorAll('div[role="dialog"], div[role="alertdialog"], section');
+            const containers = document.querySelectorAll('div[role="dialog"], div[role="alertdialog"], [role="dialog"]');
             containers.forEach(function (container) {
                 const text = (container.textContent || '').toLowerCase();
                 const isLoginInfo =
@@ -136,7 +142,10 @@
                         const btn = buttons[i];
                         const btnText = (btn.textContent || '').trim().toLowerCase();
                         if (btnText === 'not now' || btnText === 'cancel' || btnText === 'dismiss') {
-                            btn.click();
+                            if (!btn.dataset.calcboxClicked) {
+                                btn.dataset.calcboxClicked = 'true';
+                                btn.click();
+                            }
                             break;
                         }
                     }
@@ -148,13 +157,17 @@
             standaloneButtons.forEach(function (btn) {
                 const btnText = (btn.textContent || '').trim().toLowerCase();
                 if (btnText === 'not now') {
-                    const containerText = (btn.closest('div[role="dialog"], div')?.textContent || '').toLowerCase();
+                    const container = btn.closest('div[role="dialog"], div[role="alertdialog"], [role="dialog"], header, nav');
+                    const containerText = (container ? container.textContent : '').toLowerCase();
                     if (
                         containerText.includes('notification') ||
                         containerText.includes('login') ||
                         containerText.includes('save')
                     ) {
-                        btn.click();
+                        if (!btn.dataset.calcboxClicked) {
+                            btn.dataset.calcboxClicked = 'true';
+                            btn.click();
+                        }
                     }
                 }
             });

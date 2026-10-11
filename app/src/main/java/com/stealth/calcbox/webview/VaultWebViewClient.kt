@@ -63,10 +63,14 @@ class VaultWebViewClient(
 
     override fun onPageFinished(view: WebView?, url: String?) {
         super.onPageFinished(view, url)
-        if (view != null) {
-            ScriptInjector.injectIfMatching(view, view.context, url)
+        try {
+            if (view != null) {
+                ScriptInjector.injectIfMatching(view, view.context, url)
+            }
+        } catch (_: Exception) {
+        } finally {
+            onLoadingChanged?.invoke(false)
         }
-        onLoadingChanged?.invoke(false)
     }
 
     override fun onReceivedError(
