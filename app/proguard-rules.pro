@@ -4,14 +4,14 @@
 # ------------------------------------------------------------------------------
 # 1. Application Entry Points
 # ------------------------------------------------------------------------------
--keep class com.stealth.calcbox.CalcApplication { *; }
--keep class com.stealth.calcbox.MainActivity { *; }
+-keep class com.atomicdhruba.calculator.CalcApplication { *; }
+-keep class com.atomicdhruba.calculator.MainActivity { *; }
 
 # ------------------------------------------------------------------------------
 # 2. Obfuscation & Repackaging
 # ------------------------------------------------------------------------------
 # Repackage internal classes to flatten package hierarchy and conceal architecture
--repackageclasses 'com.stealth.calcbox.internal'
+-repackageclasses 'com.atomicdhruba.calculator.internal'
 -allowaccessmodification
 
 # Optimization settings

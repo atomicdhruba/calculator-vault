@@ -1,4 +1,4 @@
-package com.stealth.calcbox.calculator
+package com.atomicdhruba.calculator.calculator
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

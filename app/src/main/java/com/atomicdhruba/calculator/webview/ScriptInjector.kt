@@ -1,4 +1,4 @@
-package com.stealth.calcbox.webview
+package com.atomicdhruba.calculator.webview
 
 import android.content.Context
 import android.webkit.WebView

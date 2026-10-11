@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.stealth.calcbox"
+    namespace = "com.atomicdhruba.calculator"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.stealth.calcbox"
+        applicationId = "com.atomicdhruba.calculator"
         minSdk = 24
         targetSdk = 36
         versionCode = 2

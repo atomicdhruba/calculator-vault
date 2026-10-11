@@ -89,7 +89,7 @@ Beneath this authentic surface lies a **hardened, hardware-encrypted stealth env
 - **Isolated Sandboxing**: Restricts file schemes (`allowFileAccess = false`) and rejects unauthorized deep-links (`intent:`, `market:`).
 
 ### ⚡ Binary Obfuscation & R8 Pipeline
-- **Package Repackaging**: All internal packages (`vault`, `calculator`, `webview`) are repacked into `com.stealth.calcbox.internal.*`.
+- **Package Repackaging**: All internal packages (`vault`, `calculator`, `webview`) are repacked into `com.atomicdhruba.calculator.internal.*`.
 - **Bytecode Stripping**: Dead code elimination and automatic removal of all debug logging (`Log.d`, `Log.v`, `Log.i`).
 - **Compact Footprint**: Resource shrinking and ProGuard optimization produce a release APK of only **~3.07 MB**.
 
@@ -115,7 +115,7 @@ Beneath this authentic surface lies a **hardened, hardware-encrypted stealth env
 ## 🏗️ Architecture
 
 ```
-app/src/main/java/com/stealth/calcbox/
+app/src/main/java/com/atomicdhruba/calculator/
 ├── calculator/
 │   ├── MathEngine.kt            # Shunting-yard parser with arbitrary precision BigDecimal
 │   └── CalculatorViewModel.kt   # Unidirectional data flow StateFlow ViewModel

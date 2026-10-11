@@ -1,4 +1,4 @@
-package com.stealth.calcbox
+package com.atomicdhruba.calculator
 
 import android.app.Application
 

@@ -1,7 +1,7 @@
-package com.stealth.calcbox
+package com.atomicdhruba.calculator
 
-import com.stealth.calcbox.vault.AntiForensicsManager
-import com.stealth.calcbox.vault.FlipToLockSensorListener
+import com.atomicdhruba.calculator.vault.AntiForensicsManager
+import com.atomicdhruba.calculator.vault.FlipToLockSensorListener
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull

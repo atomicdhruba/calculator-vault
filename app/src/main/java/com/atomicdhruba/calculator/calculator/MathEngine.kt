@@ -1,4 +1,4 @@
-package com.stealth.calcbox.calculator
+package com.atomicdhruba.calculator.calculator
 
 import java.math.BigDecimal
 import java.math.MathContext

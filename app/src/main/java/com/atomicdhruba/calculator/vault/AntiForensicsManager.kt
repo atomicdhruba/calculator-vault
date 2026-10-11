@@ -1,4 +1,4 @@
-package com.stealth.calcbox.vault
+package com.atomicdhruba.calculator.vault
 
 import android.app.Activity
 import android.content.ClipData

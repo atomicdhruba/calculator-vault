@@ -1,11 +1,11 @@
-package com.stealth.calcbox
+package com.atomicdhruba.calculator
 
 import android.content.Context
 import android.content.res.AssetManager
 import android.webkit.WebView
-import com.stealth.calcbox.webview.DEFAULT_VAULT_USER_AGENT
-import com.stealth.calcbox.webview.ScriptInjector
-import com.stealth.calcbox.webview.VaultWebViewClient
+import com.atomicdhruba.calculator.webview.DEFAULT_VAULT_USER_AGENT
+import com.atomicdhruba.calculator.webview.ScriptInjector
+import com.atomicdhruba.calculator.webview.VaultWebViewClient
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse

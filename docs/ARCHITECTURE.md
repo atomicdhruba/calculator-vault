@@ -28,7 +28,7 @@ graph TD
 The application follows Android MVVM architecture with reactive StateFlow and clean separation of concerns:
 
 ```
-com.stealth.calcbox
+com.atomicdhruba.calculator
 ├── calculator/             # Mathematical evaluation & UI state management
 │   ├── MathEngine.kt       # Dijkstra Shunting-Yard parser & BigDecimal evaluator
 │   └── CalculatorViewModel # Reactive input buffer, history, and evaluation dispatcher
@@ -112,7 +112,7 @@ stateDiagram-v2
 
 ## 6. Binary Obfuscation (R8)
 
-- **Class Flattening**: Internal classes across `calculator`, `vault`, and `webview` are repackaged into a single flat obfuscated package (`com.stealth.calcbox.internal.*`).
+- **Class Flattening**: Internal classes across `calculator`, `vault`, and `webview` are repackaged into a single flat obfuscated package (`com.atomicdhruba.calculator.internal.*`).
 - **Access Modification**: `-allowaccessmodification` aggressively inlines and tightens access scopes.
 - **Log Stripping**: Android debug logging (`Log.v`, `Log.d`, `Log.i`) is removed via `-assumenosideeffects`.
 - **Source Concealment**: `-renamesourcefileattribute SourceFile` conceals internal source paths.

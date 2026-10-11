@@ -1,4 +1,4 @@
-package com.stealth.calcbox
+package com.atomicdhruba.calculator
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -15,12 +15,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.stealth.calcbox.calculator.CalculatorViewModel
-import com.stealth.calcbox.ui.CalculatorScreen
-import com.stealth.calcbox.vault.AntiForensicsManager
-import com.stealth.calcbox.vault.VaultAction
-import com.stealth.calcbox.vault.VaultSecurityManager
-import com.stealth.calcbox.webview.VaultWebView
+import com.atomicdhruba.calculator.calculator.CalculatorViewModel
+import com.atomicdhruba.calculator.ui.CalculatorScreen
+import com.atomicdhruba.calculator.vault.AntiForensicsManager
+import com.atomicdhruba.calculator.vault.VaultAction
+import com.atomicdhruba.calculator.vault.VaultSecurityManager
+import com.atomicdhruba.calculator.webview.VaultWebView
 
 class MainActivity : ComponentActivity() {
 

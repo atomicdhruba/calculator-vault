@@ -1,6 +1,6 @@
-package com.stealth.calcbox
+package com.atomicdhruba.calculator
 
-import com.stealth.calcbox.calculator.CalculatorViewModel
+import com.atomicdhruba.calculator.calculator.CalculatorViewModel
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before

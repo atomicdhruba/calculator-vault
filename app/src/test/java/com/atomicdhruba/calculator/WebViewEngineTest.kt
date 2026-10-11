@@ -1,4 +1,4 @@
-package com.stealth.calcbox
+package com.atomicdhruba.calculator
 
 import android.net.Uri
 import android.view.View
@@ -6,8 +6,8 @@ import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
-import com.stealth.calcbox.webview.VaultChromeClient
-import com.stealth.calcbox.webview.VaultWebViewClient
+import com.atomicdhruba.calculator.webview.VaultChromeClient
+import com.atomicdhruba.calculator.webview.VaultWebViewClient
 import org.junit.Assert.assertArrayEquals
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse

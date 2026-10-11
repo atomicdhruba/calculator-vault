@@ -1,4 +1,4 @@
-package com.stealth.calcbox.ui
+package com.atomicdhruba.calculator.ui
 
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -57,8 +57,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.stealth.calcbox.calculator.CalculationRecord
-import com.stealth.calcbox.calculator.CalculatorViewModel
+import com.atomicdhruba.calculator.calculator.CalculationRecord
+import com.atomicdhruba.calculator.calculator.CalculatorViewModel
 
 // Authentic iOS/Material Calculator Color Palette
 private val ColorBg = Color(0xFF000000)

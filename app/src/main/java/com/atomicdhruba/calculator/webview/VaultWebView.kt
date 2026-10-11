@@ -1,4 +1,4 @@
-package com.stealth.calcbox.webview
+package com.atomicdhruba.calculator.webview
 
 import android.annotation.SuppressLint
 import android.app.Activity

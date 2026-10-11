@@ -1,4 +1,4 @@
-package com.stealth.calcbox.vault
+package com.atomicdhruba.calculator.vault
 
 /**
  * Result action dispatched when user evaluates an expression in the calculator.

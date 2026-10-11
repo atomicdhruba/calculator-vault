@@ -1,9 +1,9 @@
-package com.stealth.calcbox
+package com.atomicdhruba.calculator
 
-import com.stealth.calcbox.vault.PasscodeSettings
-import com.stealth.calcbox.vault.VaultAction
-import com.stealth.calcbox.vault.VaultSecurityManager
-import com.stealth.calcbox.vault.normalizeExpression
+import com.atomicdhruba.calculator.vault.PasscodeSettings
+import com.atomicdhruba.calculator.vault.VaultAction
+import com.atomicdhruba.calculator.vault.VaultSecurityManager
+import com.atomicdhruba.calculator.vault.normalizeExpression
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
