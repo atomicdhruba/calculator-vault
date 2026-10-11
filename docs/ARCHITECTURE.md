@@ -116,3 +116,13 @@ stateDiagram-v2
 - **Access Modification**: `-allowaccessmodification` aggressively inlines and tightens access scopes.
 - **Log Stripping**: Android debug logging (`Log.v`, `Log.d`, `Log.i`) is removed via `-assumenosideeffects`.
 - **Source Concealment**: `-renamesourcefileattribute SourceFile` conceals internal source paths.
+
+---
+
+## 7. Legal & Trademark Disclaimer
+
+**Calculator Stealth Vault** is an independent, open-source architectural implementation designed for encrypted local storage and sandboxed WebKit containerization.
+
+- All trademarks, service marks, brand names, and platform references (including *Instagram*, *Meta*, *Android*, *Google*) cited herein belong exclusively to their respective owners.
+- Platform names are utilized strictly for **technical interoperability documentation and nominative fair use**.
+- This project is not affiliated with, endorsed by, or sponsored by Meta Platforms, Inc. or any of its subsidiaries.

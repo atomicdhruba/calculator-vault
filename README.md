@@ -23,7 +23,8 @@
   <a href="#-v1-vs-v20-evolution">V1 vs V2 Evolution</a> •
   <a href="#-architecture">Architecture</a> •
   <a href="#-installation--build">Install &amp; Build</a> •
-  <a href="#-security-specs">Security</a>
+  <a href="#-security-specs">Security</a> •
+  <a href="#️-legal--trademark-disclaimer">Disclaimer</a>
 </p>
 
 </div>
@@ -55,7 +56,7 @@ Beneath this authentic surface lies a **hardened, hardware-encrypted stealth env
 
 | Input Expression | Action | Result & Security Behavior |
 | :--- | :---: | :--- |
-| **`7 × 7 =`** *(or `7*7`)* | 🔓 **Master Vault** | Unlocks the hardware-encrypted private Instagram / web session. |
+| **`7 × 7 =`** *(or `7*7`)* | 🔓 **Master Vault** | Unlocks the hardware-encrypted private web container (compatible with modern social web apps). |
 | **`1 1 1 1 =`** | 🎭 **Decoy Portal** | Opens an innocuous fallback page (Wikipedia) for plausible deniability under duress. |
 | **`0 0 0 0 =`** | 🚨 **Panic Wipe** | **Zero-State Purge**: Instantly destroys cookies, caches, WebStorage, and resets display to `0`. |
 | **`Flip Face-Down`** | 🔄 **Hardware Lock** | Accelerometer sensor (`z < -7.0f`) immediately locks vault and purges clipboard. |
@@ -83,9 +84,9 @@ Beneath this authentic surface lies a **hardened, hardware-encrypted stealth env
 - **Automated Clipboard Sanitizer**: Wipes clipboard contents upon vault lock to prevent password or link leaks.
 
 ### 🌐 Hardened Web Container
-- **Native Fullscreen Video**: Hardware-accelerated custom view container supporting Instagram Reels and Stories in 60fps fullscreen.
-- **Media Upload Pipeline**: Android `ActivityResult` file pickers for direct photo, video, and story uploads.
-- **Automated DOM Shield (`inject_instagram.js`)**: Asynchronous `MutationObserver` automatically suppresses "Open in App" banners, dismisses "Save Login Info" prompts, and enforces dark styling.
+- **Native Fullscreen Video**: Hardware-accelerated custom view container supporting short-form video feeds, stories, and multimedia playback in 60fps fullscreen.
+- **Media Upload Pipeline**: Android `ActivityResult` file pickers for direct photo and video uploads.
+- **Automated DOM Shield (`inject_instagram.js`)**: Asynchronous `MutationObserver` automatically suppresses intrusive "Open in App" interstitials, dismisses persistent login prompts, and enforces dark styling on web portals.
 - **Isolated Sandboxing**: Restricts file schemes (`allowFileAccess = false`) and rejects unauthorized deep-links (`intent:`, `market:`).
 
 ### ⚡ Binary Obfuscation & R8 Pipeline
@@ -185,6 +186,16 @@ app/build/outputs/apk/release/app-release.apk
 │ Network Isolation     │ Zero telemetry, direct HTTPS only   │
 └───────────────────────┴─────────────────────────────────────┘
 ```
+
+---
+
+## ⚖️ Legal & Trademark Disclaimer
+
+**Calculator Stealth Vault** is an independent, open-source privacy utility designed for secure mathematical computation, local hardware encryption, and isolated web containerization.
+
+- All product names, logos, brands, trademarks, and registered trademarks mentioned in this repository or documentation (such as *Instagram*, *Meta*, *Android*, and *Google*) are the property of their respective trademark owners.
+- Any reference to third-party services or platforms is strictly for **nominative fair use and compatibility identification** (e.g. demonstrating WebKit media playback, viewport adaptability, and DOM automation capabilities).
+- This project is **not affiliated with, endorsed by, sponsored by, or associated in any way** with Meta Platforms, Inc., Instagram, or any of their parent companies, subsidiaries, or affiliates.
 
 ---
 

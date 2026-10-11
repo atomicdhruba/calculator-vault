@@ -108,7 +108,7 @@
 
     <!-- App Header -->
     <rect x="15" y="42" width="220" height="34" rx="6" fill="#18181B"/>
-    <text x="28" y="64" fill="#FFFFFF" font-family="sans-serif" font-size="15" font-weight="bold">Instagram</text>
+    <text x="28" y="64" fill="#FFFFFF" font-family="sans-serif" font-size="15" font-weight="bold">Private Web</text>
     <!-- Privacy Shield Indicator -->
     <g transform="translate(195, 49)">
       <rect width="28" height="20" rx="10" fill="#064E3B"/>
