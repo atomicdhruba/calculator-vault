@@ -1,0 +1,11 @@
+*.apk
+extracted_apk/
+*.pyc
+__pycache__/
+.gradle/
+build/
+app/build/
+.idea/
+*.iml
+local.properties
+.DS_Store
