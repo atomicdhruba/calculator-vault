@@ -6,11 +6,12 @@
 ### *Covert Mathematical Architecture • Hardware-Backed Privacy • Zero-Trace Security*
 
 <p align="center">
-  <a href="https://github.com/atomicdhruba/calculator-vault/releases"><img src="https://img.shields.io/github/v/release/atomicdhruba/calculator-vault?style=for-the-badge&color=10B981&label=Latest%20Release" alt="Release"></a>
-  <a href="https://developer.android.com"><img src="https://img.shields.io/badge/Platform-Android%207.0%2B%20(API%2024--36)-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Platform"></a>
+  <a href="https://github.com/atomicdhruba/calculator-vault/releases/download/v2.0.0/calculator-vault-v2.0.0.apk"><img src="https://img.shields.io/badge/⬇️%20Download%20Release%20APK-v2.0.0%20(3.07%20MB)-059669?style=for-the-badge&logo=android&logoColor=white" alt="Download APK"></a>
+  <a href="https://github.com/atomicdhruba/calculator-vault/releases"><img src="https://img.shields.io/github/v/release/atomicdhruba/calculator-vault?style=for-the-badge&color=10B981&label=Release" alt="Release"></a>
+  <a href="https://developer.android.com"><img src="https://img.shields.io/badge/Platform-Android%207.0%2B-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Platform"></a>
   <a href="https://kotlinlang.org"><img src="https://img.shields.io/badge/Kotlin-2.1.0-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white" alt="Kotlin"></a>
-  <a href="https://developer.android.com/jetpack/compose"><img src="https://img.shields.io/badge/Jetpack%20Compose-Material%203-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white" alt="Compose"></a>
-  <a href="https://github.com/atomicdhruba/calculator-vault/actions"><img src="https://img.shields.io/badge/Build%20%26%20Tests-52%20Passing-brightgreen?style=for-the-badge&logo=githubactions&logoColor=white" alt="CI"></a>
+  <a href="https://developer.android.com/jetpack/compose"><img src="https://img.shields.io/badge/Compose-Material%203-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white" alt="Compose"></a>
+  <a href="https://github.com/atomicdhruba/calculator-vault/actions/workflows/android.yml"><img src="https://img.shields.io/badge/CI%20Build-Passing-brightgreen?style=for-the-badge&logo=githubactions&logoColor=white" alt="CI"></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License"></a>
 </p>
 
