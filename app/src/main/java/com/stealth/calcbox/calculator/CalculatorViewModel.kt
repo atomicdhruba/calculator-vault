@@ -107,6 +107,15 @@ class CalculatorViewModel : ViewModel() {
                 state.copy(displayText = state.displayText.removePrefix("-"))
             } else if (!state.displayText.any { it in "+-×÷*/" }) {
                 state.copy(displayText = "-" + state.displayText)
+            } else if (state.displayText.endsWith(")")) {
+                val lastOpen = state.displayText.lastIndexOf("(-")
+                if (lastOpen != -1) {
+                    val prefix = state.displayText.substring(0, lastOpen)
+                    val num = state.displayText.substring(lastOpen + 2).removeSuffix(")")
+                    state.copy(displayText = "$prefix$num")
+                } else {
+                    state
+                }
             } else {
                 val expr = state.displayText
                 var i = expr.length - 1
@@ -153,7 +162,7 @@ class CalculatorViewModel : ViewModel() {
 
     fun onEquals() {
         val current = _uiState.value
-        if (current.displayText == "Error") return
+        if (current.displayText == "Error" || current.isEvaluated) return
 
         val expr = current.displayText
         val result = MathEngine.evaluate(expr)
